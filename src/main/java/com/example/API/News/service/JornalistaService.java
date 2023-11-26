@@ -5,6 +5,9 @@ import com.example.API.News.repository.JornalistaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class JornalistaService {
 
@@ -13,6 +16,15 @@ public class JornalistaService {
     @Autowired
     public JornalistaService(JornalistaRepository jornalistaRepository) {
         this.jornalistaRepository = jornalistaRepository;
+    }
+
+    public List<Jornalista> getAllJornalistas() {
+        return jornalistaRepository.findAll();
+    }
+
+    public Jornalista getJornalistaById(Long id) {
+        Optional<Jornalista> optionalJornalista = jornalistaRepository.findById(id);
+        return optionalJornalista.orElse(null);
     }
 
     public Jornalista encontrarJornalistaPorId(Long id) {
@@ -26,5 +38,4 @@ public class JornalistaService {
     public void deletarJornalista(Long id) {
         jornalistaRepository.deleteById(id);
     }
-
 }
