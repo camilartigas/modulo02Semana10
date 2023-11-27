@@ -1,18 +1,20 @@
 package com.example.API.News.service;
 
 import com.example.API.News.model.Noticia;
-import com.example.API.News.model.Revisor;
 import com.example.API.News.repository.NoticiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Service
 public class NoticiaService {
 
     private final NoticiaRepository noticiaRepository;
+    private static final Logger LOGGER = Logger.getLogger(NoticiaService.class.getName());
+
 
     @Autowired
     public NoticiaService(NoticiaRepository noticiaRepository) {
@@ -20,6 +22,7 @@ public class NoticiaService {
     }
 
     public List<Noticia> getAllNoticias() {
+        LOGGER.log(Level.INFO, "Obtendo todas as notícias");
         return noticiaRepository.findAll();
     }
 

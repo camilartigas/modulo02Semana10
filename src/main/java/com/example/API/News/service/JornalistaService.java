@@ -7,11 +7,15 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @Service
 public class JornalistaService {
 
     private final JornalistaRepository jornalistaRepository;
+    private static final Logger LOGGER = Logger.getLogger(JornalistaService.class.getName());
+
 
     @Autowired
     public JornalistaService(JornalistaRepository jornalistaRepository) {
@@ -19,6 +23,7 @@ public class JornalistaService {
     }
 
     public List<Jornalista> getAllJornalistas() {
+        LOGGER.log(Level.INFO, "Obtendo todos os jornalistas");
         return jornalistaRepository.findAll();
     }
 
